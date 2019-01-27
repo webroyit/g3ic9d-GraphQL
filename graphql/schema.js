@@ -2,19 +2,37 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(
+    // Create data
     // ! means required
     `
-        type Paper{
-            text: String!
-            size: Int!
-            count: Int!
+        type List{
+            _id: ID!
+            action: String!
+            time: String!
+            date: String!
+            note: String!
+            origin: Account!
         }
-        type Query{
-            test: Paper!
+
+        type Account{
+            _id: ID!
+            name: String!
+            password: String
+            bio: String!
+            lists: [List!]!
+        }
+
+        input DataInput{
+            name: String!
+            password: String!
+            bio: String!
+        }
+        type Mutation{
+            createAccount(accountData: DataInput): Account!
         }
 
         schema {
-            query: Query
+            mutation: Mutation
         }
     `
 );
