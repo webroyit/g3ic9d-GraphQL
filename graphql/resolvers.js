@@ -1,11 +1,12 @@
 // the logic
 
 module.exports = {
-    test(){
-        return {
-            text: 'Green Paper',
-            size: 12,
-            count: 5
-        };
+    // args is a object
+    createAccount(args, req){
+        const name = args.createAccount.name;
+        const password = args.createAccount.password;
+        const bio = args.createAccount.args;
+
+        console.log(name, password, bio);
     }
 }

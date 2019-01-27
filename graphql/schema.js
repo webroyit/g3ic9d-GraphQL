@@ -31,7 +31,12 @@ module.exports = buildSchema(
             createAccount(accountData: DataInput): Account!
         }
 
+        type MessageQuery{
+            message: String!
+        }
+
         schema {
+            query: MessageQuery
             mutation: Mutation
         }
     `

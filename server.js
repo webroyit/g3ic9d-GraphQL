@@ -8,7 +8,9 @@ const app = express();
 
 app.use('/graphql', expressGraphql({
     schema: graphqlSchema,
-    rootValue: graphqlResolver
+    rootValue: graphqlResolver,
+    // allow access to GraphiQL(in-browser tool)
+    graphiql: true
 }));
 
 app.get('/', (req, res) => res.send('Graph QL Practice'));
