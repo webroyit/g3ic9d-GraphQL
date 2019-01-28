@@ -16,8 +16,8 @@ module.exports = buildSchema(
 
         type Account{
             _id: ID!
-            name: String!
-            password: String
+            username: String!
+            password: String!
             bio: String!
             lists: [List!]!
         }
