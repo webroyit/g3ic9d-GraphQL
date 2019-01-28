@@ -23,7 +23,7 @@ module.exports = buildSchema(
         }
 
         input DataInput{
-            name: String!
+            username: String!
             password: String!
             bio: String!
         }
