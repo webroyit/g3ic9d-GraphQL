@@ -19,6 +19,7 @@ module.exports = {
 
         if(errors.length > 0){
             const error = new Error("Error alert");
+            error.data = errors;
             throw error;
         }
 

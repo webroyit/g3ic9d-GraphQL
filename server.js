@@ -12,7 +12,15 @@ app.use('/graphql', expressGraphql({
     schema: graphqlSchema,
     rootValue: graphqlResolver,
     // allow access to GraphiQL(in-browser tool)
-    graphiql: true
+    graphiql: true,
+    formatError(err){
+        if(!err.originalError){
+            return err;
+        }
+        const data = err.originalError.data;
+        const message = err.message || 'Error delected';
+        return { message: message, data: data };
+    }
 }));
 
 app.get('/', (req, res) => res.send('Graph QL Practice'));
