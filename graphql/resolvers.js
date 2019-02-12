@@ -36,5 +36,22 @@ module.exports = {
         });
         const saveAccount = await account.save();
         return{ ...saveAccount._doc, _id: saveAccount._id.toString() }
+    },
+
+    login: async function({ username, password }){
+        const account = await Account.findOne({ username: username });
+        
+        // check if the user exist
+        if(!account){
+            const error = new Error('This username does not exist');
+            throw error;
+        }
+        if(password !== account.password){
+            const error = new Error('Password does not match');
+            throw error;
+        }
+        const token = '12321';
+        const accountId = '123912vjd'
+        return{ token: token, accountId: accountId }
     }
 }
