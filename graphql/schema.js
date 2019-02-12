@@ -22,6 +22,11 @@ module.exports = buildSchema(
             lists: [List!]!
         }
 
+        type LoginData{
+            token: String!
+            accountId: String!
+        }
+
         input DataInput{
             username: String!
             password: String!
@@ -31,12 +36,12 @@ module.exports = buildSchema(
             createAccount(accountData: DataInput): Account!
         }
 
-        type MessageQuery{
-            message: String!
+        type RootQuery{
+            login(username: String!, password: String!): LoginData!
         }
 
         schema {
-            query: MessageQuery
+            query: RootQuery
             mutation: Mutation
         }
     `
