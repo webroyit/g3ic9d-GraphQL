@@ -1,4 +1,5 @@
 const validator = require('validator');
+const jwt = require('jsonwebtoken');
 
 const Account = require('../models/account');
 
@@ -50,8 +51,13 @@ module.exports = {
             const error = new Error('Password does not match');
             throw error;
         }
-        const token = '12321';
-        const accountId = '123912vjd'
-        return{ token: token, accountId: accountId }
+
+        // create the token
+        const token = jwt.sign({
+            accountId: account._id.toString(),
+            username: account.username
+        }, 'practiceGraphql', { expiresIn: '1h' });
+
+        return { token: token, accountId: account._id.toString() }
     }
 }
