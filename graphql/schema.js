@@ -5,12 +5,11 @@ module.exports = buildSchema(
     // Create data
     // ! means required
     `
-        type List{
+        type Food{
             _id: ID!
-            action: String!
-            time: String!
+            name: String!
+            price: Int!
             date: String!
-            note: String!
             origin: Account!
         }
 
@@ -19,7 +18,7 @@ module.exports = buildSchema(
             username: String!
             password: String!
             bio: String!
-            lists: [List!]!
+            foods: [Food!]!
         }
 
         type LoginData{
@@ -32,8 +31,15 @@ module.exports = buildSchema(
             password: String!
             bio: String!
         }
+
+        input FoodInput{
+            name: String!
+            price: Int!
+        }
+
         type Mutation{
             createAccount(accountData: DataInput): Account!
+            addFood(foodData: FoodInput): Food!
         }
 
         type RootQuery{
