@@ -2,6 +2,7 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 
 const Account = require('../models/account');
+const Food = require('../models/food');
 
 // the logic
 module.exports = {
