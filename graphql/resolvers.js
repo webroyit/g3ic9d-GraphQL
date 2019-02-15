@@ -60,5 +60,15 @@ module.exports = {
         }, 'practiceGraphql', { expiresIn: '1h' });
 
         return { token: token, accountId: account._id.toString() }
+    },
+    addFood: async function({ foodData }, req){
+        const food = new Food({
+            name: foodData.name,
+            price: foodData.price,
+        });
+
+        const makeFood = await food.save();
+
+        return {...makeFood._doc, _id: makeFood._id.toString() }
     }
 }
