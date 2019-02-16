@@ -4,6 +4,7 @@ const expressGraphql = require('express-graphql');
 
 const graphqlSchema = require('./graphql/schema');
 const graphqlResolver = require('./graphql/resolvers');
+const token = require('./middleware/checkToken');
 const db = require('./keys').mongoURI;
 
 const app = express();
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
     }
     next();
 });
+
+app.use(token);
 
 app.use('/graphql', expressGraphql({
     schema: graphqlSchema,
