@@ -26,6 +26,10 @@ module.exports = buildSchema(
             accountId: String!
         }
 
+        type FoodData{
+            foods: [Food!]!
+        }
+
         input DataInput{
             username: String!
             password: String!
@@ -44,6 +48,7 @@ module.exports = buildSchema(
 
         type RootQuery{
             login(username: String!, password: String!): LoginData!
+            foods: FoodData!
         }
 
         schema {
