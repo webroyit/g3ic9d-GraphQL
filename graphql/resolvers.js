@@ -81,6 +81,8 @@ module.exports = {
         });
 
         const makeFood = await food.save();
+        account.foods.push(makeFood);
+        await account.save();
 
         return {...makeFood._doc, _id: makeFood._id.toString() }
     }
