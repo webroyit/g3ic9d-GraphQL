@@ -85,5 +85,22 @@ module.exports = {
         await account.save();
 
         return {...makeFood._doc, _id: makeFood._id.toString() }
+    },
+    // get all foods
+    foods: async function(req){
+        if(!req.isLogin){
+            const error = new Error('You need to login first');
+            throw error;
+        }
+
+        const foods = await Food.find().populate('origin');
+        const result = foods.map(food => {
+            return {
+                ...food._doc,
+                _id: food._id.toString()
+            };
+        })
+
+        return { foods: result };
     }
 }
