@@ -62,9 +62,22 @@ module.exports = {
         return { token: token, accountId: account._id.toString() }
     },
     addFood: async function({ foodData }, req){
+        if(!req.isLogin){
+            const error = new Error('You need to login first');
+            throw error;
+        }
+
+        const account = await Account.findById(req.accountId);
+
+        if(!account){
+            const error = new Error('This account does not exist');
+            throw error;
+        }
+
         const food = new Food({
             name: foodData.name,
             price: foodData.price,
+            origin: account
         });
 
         const makeFood = await food.save();

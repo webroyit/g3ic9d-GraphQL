@@ -13,7 +13,13 @@ const accountSchema = new Schema({
     bio:{
         type: String,
         required: true
-    }
+    },
+    foods: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Food'
+        }
+    ]
 })
 
 module.exports = mongoose.model('Account', accountSchema);
